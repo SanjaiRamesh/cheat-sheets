@@ -20,3 +20,8 @@ kubectl create configmap app-config --from-literal=DB_NAME=testdb \
 kubectl explain pod.spec.containers.envFrom.configMapRef
 kubectl create secret generic app-secret --from-literal=password=123457
 kubectl exec pod-secret -- /bin/sh -c 'echo $PASSWORD'
+
+kubectl get secret app-secret -o jsonpath="{.data.password}" \
+  | base64 --decode \
+  && echo
+kubectl exec pod-secret -- /bin/sh -c 'echo $PASSWORD'
