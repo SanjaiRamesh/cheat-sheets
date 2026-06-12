@@ -25,3 +25,8 @@ kubectl get secret app-secret -o jsonpath="{.data.password}" \
   | base64 --decode \
   && echo
 kubectl exec pod-secret -- /bin/sh -c 'echo $PASSWORD'
+
+
+****************************
+kubectl get pod <pod-name> -o yaml > pod-definition.yaml
+kubectl edit pod <pod-name> 
